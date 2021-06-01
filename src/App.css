@@ -120,15 +120,30 @@ header{
   background-color: rgb(99, 99, 99);
 }
 
-.image {
-  height: 85%;
-  max-width: 90%;
-  /* filter: invert() brightness(10)  ; */
-  filter: ;
-  max-height: 90%;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.486);
+.imgs{
+  position: relative;
+  /* background-color: red; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
 }
 
+.image, .image-prev {
+  height: 85%;
+  max-width: 90%;
+  max-height: 90%;
+  position: absolute;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.486);
+  z-index: 15;
+}
+
+.image-prev{
+  /* display: none; */
+  z-index: 10;
+}
 .add-label{
   font-size: 60px;
   opacity: 0.3;

@@ -11,7 +11,9 @@ function App() {
   const [grayscale, setGrayscale] = useState(0);
   // const [hue, setHue] = useState(0);
   const [invert, setInvert] = useState(0);
-  const [disable, setDisable] = useState(true)
+  const [disable, setDisable] = useState(true);
+
+  const [compare, setCompare] = useState(false);
 
 
   const addImage = e => {
@@ -53,7 +55,7 @@ function App() {
   }
 
   const style = {
-    filter: `grayscale(${grayscale}%) blur(${blur}px) brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) sepia(${sepia}%) invert(${invert}%)`
+    filter: `grayscale(${grayscale}%) blur(${blur}px) brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) sepia(${sepia}%) invert(${invert}%)`,
   }
 
   return (
@@ -109,18 +111,20 @@ function App() {
               {/* <button className="control-btn" disabled={disable} onClick={()=>setGrayscale(true)}>Grayscale</button>
               <button className="control-btn" disabled={disable}>Hue-Invert</button>
               <button className="control-btn" disabled={disable}>Invert</button> */}
+              {/* <button className="control-btn" onFocus={()=>setCompare(true)} on>Compare</button> */}
               <button className="export" disabled={disable}>Export</button>
             </div>
           </div>
         </div>
         <div className="canvas">
           {/* <div className="close">+</div> */}
-          {image ? (<button className="close" onClick={removeImage}>+</button>) : null}
           {image ? (
-            <>
+            <div className="imgs">
+            {image ? (<button className="close" onClick={removeImage}>+</button>) : null}
               {/* <p className="filename">{filename}</p> */}
-              <img src={image} style={style} className="image" alt="" />
-            </>
+              <img src={image} className="image-prev" alt="" onDoubleClick={()=>setCompare(false)}/>
+               {compare ? null : <img src={image} style={style} className="image" alt="" onDoubleClick={() => setCompare(true)}/>}
+            </div>
           ):(
             <div className="add">
               <p className="add-label">Add Image File</p>
